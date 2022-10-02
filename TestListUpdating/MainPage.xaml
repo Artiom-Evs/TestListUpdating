@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TestListUpdating"
+             xmlns:state="clr-namespace:TestListUpdating.State"
+             x:DataType="{x:Type local:MainPage}"
+             x:Class="TestListUpdating.MainPage">
+
+    <state:StateContainer State="{Binding State}" Grid.Row="0">
+
+        <state:StateCondition State="Loading">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator IsRunning="True" />
+                <Label Text="Updating data..." />
+            </StackLayout>
+        </state:StateCondition>
+
+        <state:StateCondition State="Success">
+
+            <ListView ItemsSource="{Binding SomeData}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding . }" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </state:StateCondition>
+        
+    </state:StateContainer>
+
+</ContentPage>
